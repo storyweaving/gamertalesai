@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GamerTalesAI</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        darkMode: 'class',
+      }
+    </script>
+    <style>
+      body {
+        font-family: 'Inter', sans-serif;
+      }
+      .highlight-char {
+        display: inline-block;
+        transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+        background-color: transparent;
+        color: inherit;
+        font-weight: normal;
+        font-size: inherit;
+        padding: 0 0.05em;
+      }
+      .highlight-char.active {
+        background-color: #14b8a6; /* Tailwind teal-500 */
+        color: white;
+        transform: translateY(-3px);
+        border-radius: 3px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+      }
+      [contenteditable][data-placeholder]:empty:before {
+        content: attr(data-placeholder);
+        color: #6b7280; /* gray-500 */
+        pointer-events: none;
+        display: block; /* For Firefox */
+      }
+      .dark [contenteditable][data-placeholder]:empty:before {
+        color: #4b5563; /* gray-600 */
+      }
+      .editor-area p {
+        margin: 0;
+      }
+      /* Custom scrollbar for nav */
+      .nav-scroll {
+        scrollbar-width: thin;
+        scrollbar-color: #4b5563 transparent; /* For Firefox */
+      }
+      .nav-scroll::-webkit-scrollbar {
+        height: 5px;
+      }
+      .nav-scroll::-webkit-scrollbar-track {
+        background: transparent;
+      }
+      .nav-scroll::-webkit-scrollbar-thumb {
+        background-color: #4b5563; /* gray-600 */
+        border-radius: 10px;
+      }
+      .nav-scroll::-webkit-scrollbar-thumb:hover {
+        background-color: #6b7280; /* gray-500 */
+      }
+      /* Styles for embedded story images */
+      .editor-area .story-image-container {
+        float: right;
+        clear: right;
+        margin: 0 0 1rem 1rem;
+        max-width: 100px; /* Mobile size */
+      }
+      .editor-area .story-image {
+        display: block;
+        width: 100%;
+        height: auto;
+        border-radius: 0.5rem;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+      }
+      @media (min-width: 768px) { /* md breakpoint */
+        .editor-area .story-image-container {
+          max-width: 250px; /* Desktop size */
+        }
+      }
+    </style>
+    <link rel="preconnect" href="https://rsms.me/">
+    <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
+  <script type="importmap">
+{
+  "imports": {
+    "react-dom/": "https://esm.sh/react-dom@^19.1.0/",
+    "react/": "https://esm.sh/react@^19.1.0/",
+    "react": "https://esm.sh/react@^19.1.0",
+    "@google/genai": "https://esm.sh/@google/genai@^1.10.0",
+    "jspdf": "https://esm.sh/jspdf@^2.5.1",
+    "@supabase/supabase-js": "https://esm.sh/@supabase/supabase-js@^2.55.0"
+  }
+}
+</script>
+<link rel="stylesheet" href="/index.css">
+</head>
+  <body class="bg-gray-100 text-gray-800 dark:bg-gray-900 dark:text-gray-300">
+    <div id="root"></div>
+    <script type="module" src="/index.tsx"></script>
+  </body>
+</html>

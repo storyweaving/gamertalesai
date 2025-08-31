@@ -1,0 +1,1 @@
+export const SUGGESTION_WORD_TRIGGER = 24;
