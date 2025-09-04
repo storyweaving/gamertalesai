@@ -129,7 +129,7 @@ export interface GamerProfileData {
   earnedAchievements: string[];
 }
 
-export type CockpitView = 'profile' | 'chapters' | 'pictures' | 'commandCenter' | 'settings' | 'menu' | 'auth' | 'shortTales' | null;
+export type CockpitView = 'profile' | 'chapters' | 'pictures' | 'commandCenter' | 'settings' | 'menu' | 'auth' | 'shortTales' | 'gamerCard' | null;
 
 export enum ToastType {
   Success = 'success',
