@@ -2,6 +2,8 @@
   "name": "GamerTalesAI",
   "description": "An AI writing platform geared towards gamers who want to write compelling stories.",
   "repositoryUrl": "gamertalesai",
-  "requestFramePermissions": [],
+  "requestFramePermissions": [
+    "camera"
+  ],
   "prompt": ""
 }
