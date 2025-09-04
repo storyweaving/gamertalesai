@@ -1,4 +1,4 @@
-import { GoogleGenAI, Type } from "@google/genai";
+import { GoogleGenAI, Type, Modality } from "@google/genai";
 import { GamerProfileData } from '../types';
 
 const apiKey = process.env.API_KEY;
@@ -151,6 +151,50 @@ export const generateShortTale = async (fullStory: string, taleType: 'teaser' | 
         console.error("Error generating Short Tale from Gemini API:", error);
         
         let errorMessage = "AI summarization service is currently unavailable.";
+        if (error.message) {
+            errorMessage += ` Details: ${error.message}`;
+        }
+        throw new Error(errorMessage);
+    }
+};
+
+export const generateGamerCardImage = async (
+    base64ImageData: string,
+    mimeType: string,
+    prompt: string
+): Promise<string | null> => {
+    try {
+        const response = await ai.models.generateContent({
+            model: 'gemini-2.5-flash-image-preview',
+            contents: {
+                parts: [
+                    {
+                        inlineData: {
+                            data: base64ImageData,
+                            mimeType: mimeType,
+                        },
+                    },
+                    {
+                        text: prompt,
+                    },
+                ],
+            },
+            config: {
+                responseModalities: [Modality.IMAGE, Modality.TEXT],
+            },
+        });
+
+        for (const part of response.candidates[0].content.parts) {
+            if (part.inlineData) {
+                // Return the full data URI for direct use in <img> src
+                return `data:${part.inlineData.mimeType};base64,${part.inlineData.data}`;
+            }
+        }
+        // If no image is returned, something went wrong or the model chose not to.
+        return null;
+    } catch (error: any) {
+        console.error("Error generating Gamer Card from Gemini API:", error);
+        let errorMessage = "AI Gamer Card service is currently unavailable.";
         if (error.message) {
             errorMessage += ` Details: ${error.message}`;
         }
