@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { useAppContext } from '../../context/AppContext';
 import GamerProfileForm from '../cockpit/MilestonesForm';
@@ -7,6 +6,7 @@ import SettingsView from '../cockpit/MenuView';
 import PicturesView from '../cockpit/PicturesView';
 import CommandCenterView from '../cockpit/CommandCenterView';
 import ShortTalesView from '../cockpit/ShortTalesView';
+import GamerCardView from '../cockpit/GamerCardView';
 import { jsPDF } from 'jspdf';
 import { ToastType } from '../../types';
 import Auth from '../auth/Auth';
@@ -139,6 +139,15 @@ const MainMenuView: React.FC = () => {
             </div>
             <div className="flex-grow flex flex-col">
                 <ul className="space-y-4 text-gray-700 dark:text-gray-300">
+                     <li className="bg-gray-100 dark:bg-gray-700/50 rounded-lg">
+                        <button 
+                            onClick={() => dispatch({ type: 'SET_COCKPIT_VIEW', payload: 'gamerCard' })}
+                            className="w-full flex items-center justify-center space-x-2 font-medium transition-colors hover:text-teal-600 dark:hover:text-teal-400 p-4 text-base md:p-3 md:text-sm"
+                        >
+                            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 4 8H4z" /></svg>
+                            <span>Build Your Gamer Card</span>
+                        </button>
+                    </li>
                     <li className="bg-gray-100 dark:bg-gray-700/50 rounded-lg">
                         <button 
                             onClick={() => dispatch({ type: 'SET_COCKPIT_VIEW', payload: 'shortTales' })}
@@ -221,6 +230,8 @@ const GlassCockpit: React.FC = () => {
         return <MainMenuView />;
       case 'shortTales':
         return <ShortTalesView />;
+      case 'gamerCard':
+        return <GamerCardView />;
       case 'auth':
         return <Auth />;
       default:
